@@ -1,6 +1,3 @@
-import './assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css'
-import './assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css'
-import './assets/plugins/OwlCarousel2-2.2.1/animate.css'
 import './styles/cart_responsive.css'
 import './styles/cart.css'
 import './styles/categories_responsive.css'
