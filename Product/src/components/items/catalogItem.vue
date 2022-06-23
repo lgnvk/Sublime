@@ -1,0 +1,70 @@
+<template>
+  <div class="product" >
+    <div @click.prevent="$router.push('/catalog/' + item.id)">
+      <div class="product_image">
+        <img :src="imgUrl" />
+      </div>
+      <div v-if="category" class="product_extra" :class="category.class">
+        <a href="categories.html">{{ category.text }}</a>
+      </div>
+      <div class="product_content">
+        <div class="product_title">
+          <a href="product.html">{{ item.name }}</a>
+        </div>
+        <div class="product_price">$ {{ item.price }}</div>
+      </div>
+    </div>
+
+    <div class="button cart_button button_custom" @click="add(item)">
+      <span>Add</span>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "CatalogItem",
+  props: ["item", "imgApi"],
+  data() {
+    return {
+      categories: {
+        1: "New",
+        2: "Hot",
+        3: "Sale",
+      },
+    };
+  },
+
+  computed: {
+    category() {
+      const { category } = this.item;
+      return !category
+        ? null
+        : {
+            class: "product_" + this.categories[category].toLowerCase(),
+            text: this.categories[category],
+          };
+    },
+    imgUrl() {
+      return this.imgApi + this.item.imgUrl[0];
+    },
+  },
+  methods: {
+    add(item) {
+      this.$parent.addItem(item);
+    },
+  },
+};
+</script>
+
+<style>
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button_custom {
+  margin: 0;
+  width: 260px;
+}
+</style>
